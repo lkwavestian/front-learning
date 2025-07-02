@@ -1,0 +1,9 @@
+{
+	"dependencies": {
+		"@fe-qianxun/prettier": "^1.0.1",
+		"@fe-qianxun/tailwind-config": "^1.0.3",
+		"@fe-qianxun/verify-commit": "^2.0.1",
+		"dayjs": "^1.11.13",
+		"typescript": "^5.8.3"
+	}
+}

@@ -1,0 +1,103 @@
+lockfileVersion: '6.0'
+
+importers:
+
+  .:
+    dependencies:
+      '@fe-qianxun/prettier':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@fe-qianxun/tailwind-config':
+        specifier: ^1.0.3
+        version: 1.0.3(tailwindcss@4.1.11)
+      '@fe-qianxun/verify-commit':
+        specifier: ^2.0.1
+        version: 2.0.1
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
+
+  packages/typescript: {}
+
+packages:
+
+  /@fe-qianxun/prettier@1.0.1:
+    resolution: {integrity: sha512-Fv5490I4R0adug20R5uWIFxzGBJH7hKxbmpFK4bErYzPactq52eiAFWE9EPulLjO7cUsvh+AEnED2lLPZIWs5w==}
+    dev: false
+
+  /@fe-qianxun/tailwind-config@1.0.3(tailwindcss@4.1.11):
+    resolution: {integrity: sha512-08PQtKjdtpKVh5w7SYHUvHCQIEfzObmU5IrGzkHQ6H7ForJkzGOy0uqGuOS8IChYsPSe6CC9MdG2jQmlenFf6g==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0'
+    dependencies:
+      tailwindcss: 4.1.11
+    dev: false
+
+  /@fe-qianxun/verify-commit@2.0.1:
+    resolution: {integrity: sha512-HAwix7DPxYzy+Y1MRYB7TLTpsq0FtXjnaDPzFYolvFdgJNEU8cQcjcfDUomL7XYtb5+fKb/bLdHpFaI0yXIFew==}
+    hasBin: true
+    dependencies:
+      picocolors: 1.1.1
+      terminal-link: 3.0.0
+    dev: false
+
+  /ansi-escapes@5.0.0:
+    resolution: {integrity: sha512-5GFMVX8HqE/TB+FuBJGuO5XG0WrsA6ptUqoODaT/n9mmUaZFkqnBueB4leqGBCmrUHnCnC4PCZTCd0E7QQ83bA==}
+    engines: {node: '>=12'}
+    dependencies:
+      type-fest: 1.4.0
+    dev: false
+
+  /dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
+    dev: false
+
+  /has-flag@4.0.0:
+    resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
+    engines: {node: '>=8'}
+    dev: false
+
+  /picocolors@1.1.1:
+    resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
+    dev: false
+
+  /supports-color@7.2.0:
+    resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
+    engines: {node: '>=8'}
+    dependencies:
+      has-flag: 4.0.0
+    dev: false
+
+  /supports-hyperlinks@2.3.0:
+    resolution: {integrity: sha512-RpsAZlpWcDwOPQA22aCH4J0t7L8JmAvsCxfOSEwm7cQs3LshN36QaTkwd70DnBOXDWGssw2eUoc8CaRWT0XunA==}
+    engines: {node: '>=8'}
+    dependencies:
+      has-flag: 4.0.0
+      supports-color: 7.2.0
+    dev: false
+
+  /tailwindcss@4.1.11:
+    resolution: {integrity: sha512-2E9TBm6MDD/xKYe+dvJZAmg3yxIEDNRc0jwlNyDg/4Fil2QcSLjFKGVff0lAf1jjeaArlG/M75Ey/EYr/OJtBA==}
+    dev: false
+
+  /terminal-link@3.0.0:
+    resolution: {integrity: sha512-flFL3m4wuixmf6IfhFJd1YPiLiMuxEc8uHRM1buzIeZPm22Au2pDqBJQgdo7n1WfPU1ONFGv7YDwpFBmHGF6lg==}
+    engines: {node: '>=12'}
+    dependencies:
+      ansi-escapes: 5.0.0
+      supports-hyperlinks: 2.3.0
+    dev: false
+
+  /type-fest@1.4.0:
+    resolution: {integrity: sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==}
+    engines: {node: '>=10'}
+    dev: false
+
+  /typescript@5.8.3:
+    resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    dev: false
