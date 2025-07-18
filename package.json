@@ -1,9 +1,20 @@
 {
-	"dependencies": {
-		"@fe-qianxun/prettier": "^1.0.1",
-		"@fe-qianxun/tailwind-config": "^1.0.3",
-		"@fe-qianxun/verify-commit": "^2.0.1",
-		"dayjs": "^1.11.13",
-		"typescript": "^5.8.3"
-	}
+  "dependencies": {
+    "@fe-qianxun/prettier": "^1.0.1",
+    "@fe-qianxun/tailwind-config": "^1.0.3",
+    "dayjs": "^1.11.13",
+    "typescript": "^5.8.3"
+  },
+  "prettier": "@fe-qianxun/prettier",
+  "devDependencies": {
+    "@fe-qianxun/verify-commit": "^2.0.1",
+    "@tailwindcss/postcss": "^4.1.11",
+    "simple-git-hooks": "^2.13.0"
+  },
+  "simple-git-hooks": {
+    "commit-msg": "npx fe-qianxun-verify-commit $1"
+  },
+  "scripts": {
+    "prepare": "npx simple-git-hooks"
+  }
 }
