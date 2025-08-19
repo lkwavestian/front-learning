@@ -147,9 +147,10 @@ h3 {
 
 .route-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+  grid-template-columns: repeat(4, 320px);
   gap: 25px;
   margin-top: 40px;
+  justify-content: center;
 }
 
 .route-card {

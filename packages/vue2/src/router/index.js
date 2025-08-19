@@ -17,7 +17,14 @@ export const navMenu = [
     name: "DataTest",
     label: "Data",
     desc: "为什么 Vue2 中的 data 属性是一个函数？",
-    component: () => import("../views/DataTest.vue"),
+    component: () => import("../views/FndataOrObjdata.vue"),
+  },
+  {
+    path: "/dynamic-data",
+    name: "DynamicData",
+    label: "Data",
+    desc: "动态给vue的data添加⼀个新的属性时会发⽣什么？怎样解决？",
+    component: () => import("../views/dynamicData.vue"),
   },
 ];
 
