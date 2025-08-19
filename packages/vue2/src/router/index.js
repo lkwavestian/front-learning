@@ -12,6 +12,13 @@ export const navMenu = [
     desc: "测试Vuex相关API",
     component: () => import("../views/VuexTest.vue"),
   },
+  {
+    path: "/data-test",
+    name: "DataTest",
+    label: "Data",
+    desc: "为什么 Vue2 中的 data 属性是一个函数？",
+    component: () => import("../views/DataTest.vue"),
+  },
 ];
 
 // 提取路由配置
