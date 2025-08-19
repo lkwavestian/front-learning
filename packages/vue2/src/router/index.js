@@ -6,11 +6,11 @@ Vue.use(VueRouter);
 // 导航菜单配置
 export const navMenu = [
   {
-    path: "/about",
-    name: "About",
-    label: "关于",
-    desc: "关于我们",
-    component: () => import("../views/About.vue"),
+    path: "/vuex-test",
+    name: "VuexTest",
+    label: "Vuex",
+    desc: "测试Vuex相关API",
+    component: () => import("../views/VuexTest.vue"),
   },
 ];
 
