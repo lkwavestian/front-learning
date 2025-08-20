@@ -23,8 +23,15 @@ export const navMenu = [
     path: "/dynamic-data",
     name: "DynamicData",
     label: "Data",
-    desc: "动态给vue的data添加⼀个新的属性时会发⽣什么？怎样解决？",
+    desc: "动态添加 data 属性的响应式行为",
     component: () => import("../views/dynamicData.vue"),
+  },
+  {
+    path: "/mixin-test",
+    name: "MixinTest",
+    label: "Mixin",
+    desc: "vue2的mixin的理解与应⽤场景",
+    component: () => import("../views/MixinText.vue"),
   },
 ];
 
