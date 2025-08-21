@@ -33,6 +33,13 @@ export const navMenu = [
     desc: "vue2的mixin的理解与应⽤场景",
     component: () => import("../views/MixinText.vue"),
   },
+  {
+    path: "/modifiers-demo",
+    name: "ModifiersDemo",
+    label: "Modifiers",
+    desc: "Vue2 常用修饰符与自定义指令 v-debounce",
+    component: () => import("../views/ModifiersDemo.vue"),
+  },
 ];
 
 // 提取路由配置
