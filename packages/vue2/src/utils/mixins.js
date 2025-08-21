@@ -4,6 +4,7 @@ export const baseMixin = {
     return {
       mixinData: "来自基础 Mixin 的数据",
       mixinConflictingData: "Mixin 中的冲突数据",
+      sharedData: "来自基础 Mixin 的 sharedData",
     };
   },
   computed: {

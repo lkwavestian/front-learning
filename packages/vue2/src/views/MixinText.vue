@@ -47,6 +47,34 @@
       </div>
     </section>
 
+    <!-- 方法冲突覆盖演示 -->
+    <section class="card">
+      <h2>3. 方法冲突覆盖（组件方法覆盖 Mixin 方法）</h2>
+      <div class="demo-section">
+        <p><strong>调用 this.mixinMethod 的结果：</strong>{{ methodConflictResult }}</p>
+        <p><strong>调用 Mixin 原始方法的结果：</strong>{{ mixinOriginalMethodResult }}</p>
+
+        <div class="buttons">
+          <button @click="testMethodConflict" class="btn primary">调用组件覆盖方法</button>
+          <button @click="testMixinOriginalMethod" class="btn success">调用原始 Mixin 方法</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 数据键名冲突（同名键时组件优先） -->
+    <section class="card">
+      <h2>3. 数据键名冲突（同名键时组件优先）</h2>
+      <div class="demo-section">
+        <p><strong>组件 sharedData（最终值）：</strong>{{ sharedData }}</p>
+        <p><strong>Mixin 默认 sharedData：</strong>{{ mixinSharedDefault }}</p>
+
+        <div class="buttons">
+          <button @click="setComponentSharedData" class="btn primary">设置组件 sharedData</button>
+          <button @click="resetComponentSharedData" class="btn warn">重置组件 sharedData</button>
+        </div>
+      </div>
+    </section>
+
     <!-- 生命周期 Hook 演示 -->
     <section class="card">
       <h2>4. 生命周期 Hook 执行顺序</h2>
@@ -102,10 +130,17 @@ export default {
       mixinMethodResult: "",
       combinedMethodResult: "",
       lifecycleLogs: [],
+      methodConflictResult: "",
+      mixinOriginalMethodResult: "",
+      // 同名键冲突：组件的 sharedData 会覆盖 Mixin 中的 sharedData
+      sharedData: "组件 sharedData（覆盖 Mixin 同名键）",
+      mixinSharedDefault: "",
     };
   },
   created() {
     this.addLifecycleLog("组件 created");
+    // 记录 Mixin 中 sharedData 的默认值，便于对比
+    this.mixinSharedDefault = baseMixin.data.call(this).sharedData;
   },
   mounted() {
     this.addLifecycleLog("组件 mounted");
@@ -113,8 +148,14 @@ export default {
   },
   methods: {
     callMixinMethod() {
-      this.mixinMethodResult = this.mixinMethod();
-      this.log("调用了 Mixin 方法");
+      // 调用 Mixin 原始方法（避免被组件同名方法覆盖的影响）
+      this.mixinMethodResult = baseMixin.methods.mixinMethod.call(this);
+      this.log("调用了 Mixin 原始方法");
+    },
+
+    // 定义与 Mixin 同名的方法，演示组件方法会覆盖 Mixin 方法
+    mixinMethod() {
+      return "组件中的 mixinMethod 覆盖了 Mixin 的方法";
     },
 
     updateMixinData() {
@@ -127,6 +168,18 @@ export default {
       this.log("调用合并方法");
       this.incrementCounter();
       this.combinedMethodResult = `日志状态: ${this.loggerEnabled}, 计数: ${this.counter}`;
+    },
+
+    // 方法冲突测试：调用组件覆盖的方法
+    testMethodConflict() {
+      this.methodConflictResult = this.mixinMethod();
+      this.log("调用了组件覆盖的 mixinMethod");
+    },
+
+    // 方法冲突测试：调用 Mixin 原始方法
+    testMixinOriginalMethod() {
+      this.mixinOriginalMethodResult = baseMixin.methods.mixinMethod.call(this);
+      this.log("调用了 Mixin 原始的 mixinMethod");
     },
 
     showDataPriority() {
