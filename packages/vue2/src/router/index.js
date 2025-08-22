@@ -40,6 +40,13 @@ export const navMenu = [
     desc: "Vue2 常用修饰符与自定义指令 v-debounce",
     component: () => import("../views/ModifiersDemo.vue"),
   },
+  {
+    path: "/nexttick-demo",
+    name: "NextTickDemo",
+    label: "NextTick",
+    desc: "Vue $nextTick 详解：作用、用法与原理",
+    component: () => import("../views/NextTickDemo.vue"),
+  },
 ];
 
 // 提取路由配置
