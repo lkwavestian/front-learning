@@ -47,6 +47,13 @@ export const navMenu = [
     desc: "Vue $nextTick 详解：作用、用法与原理",
     component: () => import("../views/NextTickDemo.vue"),
   },
+  {
+    path: "/component-vs-plugin",
+    name: "ComponentVsPlugin",
+    label: "Component vs Plugin",
+    desc: "Vue2 组件和插件的区别详解",
+    component: () => import("../views/ComponentVsPlugin.vue"),
+  },
 ];
 
 // 提取路由配置
