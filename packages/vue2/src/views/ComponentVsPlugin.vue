@@ -1,12 +1,23 @@
 <template>
   <div class="component-vs-plugin">
+    <!-- 页面头部 -->
     <div class="header-section">
       <h1>Vue2 组件 vs 插件</h1>
       <p class="subtitle">理解组件和插件的本质区别及其应用场景</p>
     </div>
 
+    <!-- 快速导航 -->
+    <div class="quick-nav">
+      <a href="#concept" class="nav-item">概念对比</a>
+      <a href="#directive-vs-plugin" class="nav-item">指令 vs 插件</a>
+      <a href="#component-examples" class="nav-item">组件示例</a>
+      <a href="#plugin-examples" class="nav-item">插件示例</a>
+      <a href="#scenarios" class="nav-item">应用场景</a>
+      <a href="#summary" class="nav-item">总结</a>
+    </div>
+
     <!-- 概念对比 -->
-    <div class="concept-section">
+    <section id="concept" class="content-section">
       <h2>概念对比</h2>
       <div class="comparison-grid">
         <div class="comparison-card">
@@ -30,32 +41,164 @@
           </ul>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- 组件示例 -->
-    <div class="example-section">
-      <h2>组件示例</h2>
+    <!-- 自定义指令 vs 插件 -->
+    <section id="directive-vs-plugin" class="content-section">
+      <h2>自定义指令 vs 插件</h2>
+      <p class="section-intro">理解自定义指令与插件的本质区别及其应用场景</p>
 
-      <h3>1. 基础组件</h3>
-      <div class="code-demo">
-        <div class="demo-preview">
-          <h4>预览效果：</h4>
-          <CustomButton :text="buttonText" :type="buttonType" @click="handleButtonClick" />
-          <div class="button-controls">
-            <label>按钮文本：</label>
-            <input v-model="buttonText" placeholder="输入按钮文本" />
-            <br /><br />
-            <label>按钮类型：</label>
-            <select v-model="buttonType">
-              <option value="primary">Primary</option>
-              <option value="secondary">Secondary</option>
-              <option value="danger">Danger</option>
-            </select>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3>自定义指令 (Custom Directive)</h3>
+          <ul>
+            <li><strong>概念层次</strong>：Vue 功能层面的特性</li>
+            <li><strong>作用域</strong>：单个指令，专注于特定的 DOM 操作</li>
+            <li><strong>功能范围</strong>：简单的 DOM 操作、样式操作、事件处理</li>
+            <li><strong>安装方式</strong>：Vue.directive() 或组件内局部注册</li>
+            <li><strong>使用方式</strong>：在模板中通过 v-指令名 使用</li>
+            <li><strong>复杂度</strong>：简单、专注、易于理解</li>
+            <li><strong>维护性</strong>：单个维护，功能单一</li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>插件 (Plugin)</h3>
+          <ul>
+            <li><strong>概念层次</strong>：应用架构层面的概念</li>
+            <li><strong>作用域</strong>：整个 Vue 应用，可以包含多种功能</li>
+            <li><strong>功能范围</strong>：全局方法、指令、过滤器、混入、属性等</li>
+            <li><strong>安装方式</strong>：只能通过 Vue.use() 安装</li>
+            <li><strong>使用方式</strong>：安装后全局可用，支持多种功能</li>
+            <li><strong>复杂度</strong>：复杂，功能完整</li>
+            <li><strong>维护性</strong>：统一管理，易于扩展</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 插件的官方定义 -->
+      <div class="official-definition">
+        <h3>插件的官方定义</h3>
+        <p>插件通常用来为 Vue 添加全局功能。插件的功能范围没有严格的限制——一般有下面几种：</p>
+
+        <div class="function-types">
+          <div class="function-type">
+            <h4>1. 添加全局方法或者属性</h4>
+            <p>如：<code>vue-custom-element</code></p>
+            <div class="code-example-small">
+              <pre><code>Vue.prototype.$customMethod = function() {
+  // 全局方法实现
+};
+
+Vue.prototype.$customProperty = '全局属性值';</code></pre>
+            </div>
+          </div>
+
+          <div class="function-type">
+            <h4>2. 添加全局资源：指令/过滤器/过渡等</h4>
+            <p>如：<code>vue-touch</code></p>
+            <div class="code-example-small">
+              <pre><code>Vue.directive('swipe', {
+  bind(el, binding) {
+    // 触摸滑动指令
+  }
+});
+
+Vue.filter('uppercase', function(value) {
+  return value.toUpperCase();
+});</code></pre>
+            </div>
+          </div>
+
+          <div class="function-type">
+            <h4>3. 通过全局混入来添加组件选项</h4>
+            <p>如：<code>vue-router</code></p>
+            <div class="code-example-small">
+              <pre><code>Vue.mixin({
+  beforeCreate() {
+    // 给每个组件注入路由相关功能
+    this._router = this.$options.router;
+  }
+});</code></pre>
+            </div>
+          </div>
+
+          <div class="function-type">
+            <h4>4. 添加 Vue 实例方法</h4>
+            <p>通过把它们添加到 <code>Vue.prototype</code> 上实现</p>
+            <div class="code-example-small">
+              <pre><code>Vue.prototype.$formatDate = function(date) {
+  return new Date(date).toLocaleDateString();
+};
+
+Vue.prototype.$http = {
+  get: function(url) { /* GET 请求 */ },
+  post: function(url, data) { /* POST 请求 */ }
+};</code></pre>
+            </div>
+          </div>
+
+          <div class="function-type">
+            <h4>5. 一个库，提供自己的 API</h4>
+            <p>同时提供上面提到的一个或多个功能。如：<code>vue-router</code></p>
+            <div class="code-example-small">
+              <pre><code>export default {
+  install(Vue) {
+    // 1. 添加全局方法
+    Vue.prototype.$router = this.router;
+    Vue.prototype.$route = this.route;
+    
+    // 2. 添加全局指令
+    Vue.directive('router-link', { /* ... */ });
+    
+    // 3. 添加全局混入
+    Vue.mixin({ /* ... */ });
+    
+    // 4. 提供自己的 API
+    this.router = new Router(options);
+  }
+};</code></pre>
+            </div>
           </div>
         </div>
-        <div class="code-block">
-          <h4>组件定义（使用 render 函数）：</h4>
-          <pre><code>// CustomButton.vue
+
+        <div class="definition-summary">
+          <h4>理解要点：</h4>
+          <ul>
+            <li><strong>全局性</strong>：插件安装后，整个应用都能使用其功能</li>
+            <li><strong>灵活性</strong>：功能范围没有严格限制，可以根据需求组合</li>
+            <li><strong>标准化</strong>：通过 <code>Vue.use()</code> 统一安装方式</li>
+            <li><strong>扩展性</strong>：可以包含多种类型的 Vue 功能增强</li>
+            <li><strong>实用性</strong>：是第三方库集成的标准方式</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 组件示例 -->
+    <section id="component-examples" class="content-section">
+      <h2>组件示例</h2>
+
+      <div class="example-item">
+        <h3>1. 基础组件</h3>
+        <div class="code-demo">
+          <div class="demo-preview">
+            <h4>预览效果：</h4>
+            <CustomButton :text="buttonText" :type="buttonType" @click="handleButtonClick" />
+            <div class="button-controls">
+              <label>按钮文本：</label>
+              <input v-model="buttonText" placeholder="输入按钮文本" />
+              <br /><br />
+              <label>按钮类型：</label>
+              <select v-model="buttonType">
+                <option value="primary">Primary</option>
+                <option value="secondary">Secondary</option>
+                <option value="danger">Danger</option>
+              </select>
+            </div>
+          </div>
+          <div class="code-block">
+            <h4>组件定义（使用 render 函数）：</h4>
+            <pre><code>// CustomButton.vue
 const CustomButton = {
   name: 'CustomButton',
   props: {
@@ -77,26 +220,28 @@ const CustomButton = {
     }, this.text);
   }
 };</code></pre>
+          </div>
         </div>
       </div>
 
-      <h3>2. 组件通信示例</h3>
-      <div class="code-demo">
-        <div class="demo-preview">
-          <h4>预览效果：</h4>
-          <div class="counter-demo">
-            <p>当前计数：{{ counter }}</p>
-            <CounterControls
-              :value="counter"
-              @increment="counter++"
-              @decrement="counter--"
-              @reset="counter = 0"
-            />
+      <div class="example-item">
+        <h3>2. 组件通信示例</h3>
+        <div class="code-demo">
+          <div class="demo-preview">
+            <h4>预览效果：</h4>
+            <div class="counter-demo">
+              <p>当前计数：{{ counter }}</p>
+              <CounterControls
+                :value="counter"
+                @increment="counter++"
+                @decrement="counter--"
+                @reset="counter = 0"
+              />
+            </div>
           </div>
-        </div>
-        <div class="code-block">
-          <h4>父子组件通信（使用 render 函数）：</h4>
-          <pre><code>// 父组件
+          <div class="code-block">
+            <h4>父子组件通信（使用 render 函数）：</h4>
+            <pre><code>// 父组件
 &lt;CounterControls 
   :value="counter"           // 传递数据
   @increment="counter++"     // 监听事件
@@ -118,7 +263,7 @@ const CounterControls = {
       h('button', {
         class: ['counter-btn', 'counter-btn-secondary'],
         on: { click: () => this.$emit('decrement') }
-      }, '-'),
+    }, '-'),
       h('span', { class: 'counter-value' }, this.value),
       h('button', {
         class: ['counter-btn', 'counter-btn-primary'],
@@ -131,45 +276,48 @@ const CounterControls = {
     ]);
   }
 };</code></pre>
-        </div>
-      </div>
-    </div>
-
-    <!-- 插件示例 -->
-    <div class="example-section">
-      <h2>插件示例</h2>
-
-      <h3>1. 真实插件演示</h3>
-      <div class="code-demo">
-        <div class="demo-preview">
-          <h4>预览效果：</h4>
-          <div class="plugin-demo">
-            <h5>全局方法演示：</h5>
-            <button @click="demoFormatDate">格式化当前时间</button>
-            <p>格式化结果：{{ formattedDate }}</p>
-
-            <h5>全局指令演示：</h5>
-            <input v-focus v-model="inputText" placeholder="自动聚焦的输入框" />
-            <input v-model="inputText" placeholder="非自动聚焦的输入框（对比用）" />
-            <div v-highlight="highlightColor" class="highlight-demo">
-              高亮背景区域 (点击按钮改变颜色)
-            </div>
-            <button @click="changeHighlightColor">改变高亮颜色</button>
-
-            <h5>全局过滤器演示：</h5>
-            <p>金额：{{ 1234.56 | currency }}</p>
-            <p>金额：{{ 1234.56 | currency("USD") }}</p>
-            <p>大写：{{ "hello world" | capitalize }}</p>
-            <p>大写：{{ "vue.js" | capitalize }}</p>
-            <h5>Toast 提示演示：</h5>
-            <button @click="showSuccessToast">成功提示</button>
-            <button @click="showErrorToast">错误提示</button>
-            <button @click="showWarningToast">警告提示</button>
           </div>
         </div>
-        <div class="code-block">
-          <h4>插件定义（包含5种增强方式）：</h4>
-          <pre><code>// myPlugin.js
+      </div>
+    </section>
+
+    <!-- 插件示例 -->
+    <section id="plugin-examples" class="content-section">
+      <h2>插件示例</h2>
+
+      <div class="example-item">
+        <h3>1. 真实插件演示</h3>
+        <div class="code-demo">
+          <div class="demo-preview">
+            <h4>预览效果：</h4>
+            <div class="plugin-demo">
+              <h5>全局方法演示：</h5>
+              <button @click="demoFormatDate">格式化当前时间</button>
+              <p>格式化结果：{{ formattedDate }}</p>
+
+              <h5>全局指令演示：</h5>
+              <input v-focus v-model="inputText" placeholder="自动聚焦的输入框" />
+              <input v-model="inputText" placeholder="非自动聚焦的输入框（对比用）" />
+              <div v-highlight="highlightColor" class="highlight-demo">
+                高亮背景区域 (点击按钮改变颜色)
+              </div>
+              <button @click="changeHighlightColor">改变高亮颜色</button>
+
+              <h5>全局过滤器演示：</h5>
+              <p>金额：{{ 1234.56 | currency }}</p>
+              <p>金额：{{ 1234.56 | currency("USD") }}</p>
+              <p>大写：{{ "hello world" | capitalize }}</p>
+              <p>大写：{{ "vue.js" | capitalize }}</p>
+
+              <h5>Toast 提示演示：</h5>
+              <button @click="showSuccessToast">成功提示</button>
+              <button @click="showErrorToast">错误提示</button>
+              <button @click="showWarningToast">警告提示</button>
+            </div>
+          </div>
+          <div class="code-block">
+            <h4>插件定义（包含5种增强方式）：</h4>
+            <pre><code>// myPlugin.js
 export default {
   install(Vue, options = {}) {
     const { debug = false, prefix = 'MyPlugin' } = options;
@@ -279,13 +427,15 @@ export default {
     }
   }
 };</code></pre>
+          </div>
         </div>
       </div>
 
-      <h3>2. 插件使用</h3>
-      <div class="code-block">
-        <h4>安装和使用插件：</h4>
-        <pre><code>// main.js
+      <div class="example-item">
+        <h3>2. 插件使用</h3>
+        <div class="code-block">
+          <h4>安装和使用插件：</h4>
+          <pre><code>// main.js
 import Vue from 'vue'
 import MyPlugin from './plugins/myPlugin'
 
@@ -317,11 +467,12 @@ export default {
     console.log('插件版本:', this.$pluginConfig.version)
   }
 }</code></pre>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- 实际应用场景 -->
-    <div class="scenarios-section">
+    <!-- 应用场景对比 -->
+    <section id="scenarios" class="content-section">
       <h2>应用场景对比</h2>
 
       <div class="scenarios-grid">
@@ -347,10 +498,10 @@ export default {
           </ul>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- 总结 -->
-    <div class="summary-section">
+    <section id="summary" class="content-section">
       <h2>总结</h2>
       <div class="summary-content">
         <p><strong>组件</strong>是Vue应用的基础构建块，专注于UI的复用和组件间的通信。</p>
@@ -359,7 +510,7 @@ export default {
           在实际开发中，组件用于构建用户界面，插件用于增强Vue的功能。两者结合使用，可以构建出功能强大、结构清晰的Vue应用。
         </p>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -514,15 +665,18 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
 }
 
 .header-section {
   text-align: center;
   margin-bottom: 40px;
-  padding: 30px;
+  padding: 40px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  border-radius: 10px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
 }
 
 .header-section h1 {
@@ -536,11 +690,328 @@ export default {
   margin: 0;
 }
 
+.quick-nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  padding: 10px 20px;
+  background: #42b983;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.nav-item:hover {
+  background: #3aa876;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(66, 185, 131, 0.3);
+}
+
 .concept-section,
 .example-section,
 .scenarios-section,
 .summary-section {
   margin-bottom: 40px;
+}
+
+.content-section {
+  margin-bottom: 50px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+}
+
+.content-section h2 {
+  color: #2c3e50;
+  border-bottom: 3px solid #42b983;
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+  font-size: 2em;
+  text-align: center;
+}
+
+.example-item {
+  margin-bottom: 40px;
+  padding: 25px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #42b983;
+}
+
+.example-item h3 {
+  color: #42b983;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.4em;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+.directive-vs-plugin-section {
+  margin-bottom: 40px;
+}
+
+.section-intro {
+  text-align: center;
+  color: #666;
+  font-size: 1.1em;
+  margin-bottom: 25px;
+  font-style: italic;
+}
+
+.detailed-explanation {
+  margin-top: 30px;
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 8px;
+  border-left: 4px solid #17a2b8;
+}
+
+.detailed-explanation h3 {
+  color: #17a2b8;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.detailed-explanation h4 {
+  color: #495057;
+  margin: 25px 0 15px 0;
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 8px;
+}
+
+.detailed-explanation h5 {
+  color: #6c757d;
+  margin: 20px 0 10px 0;
+  font-size: 1em;
+}
+
+.explanation-content p {
+  line-height: 1.6;
+  margin-bottom: 10px;
+  color: #495057;
+}
+
+.official-definition {
+  background: #f0f8ff;
+  padding: 25px;
+  border-radius: 8px;
+  border-left: 4px solid #007acc;
+  margin-bottom: 25px;
+}
+
+.definition-content {
+  margin-bottom: 20px;
+}
+
+.definition-content p {
+  line-height: 1.6;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  font-size: 1.05em;
+}
+
+.definition-content strong {
+  color: #007acc;
+  font-weight: 600;
+}
+
+.function-types {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.function-type {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #e1e8ed;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.function-type h5 {
+  color: #007acc;
+  margin: 0 0 10px 0;
+  font-size: 1.1em;
+  font-weight: 600;
+  border-bottom: 2px solid #e1e8ed;
+  padding-bottom: 8px;
+}
+
+.function-type p {
+  margin: 8px 0;
+  color: #495057;
+  line-height: 1.5;
+}
+
+.function-type code {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+}
+
+.code-example,
+.usage-example,
+.code-organization {
+  margin: 20px 0;
+}
+
+.code-example h5,
+.usage-example h5,
+.code-organization h5 {
+  color: #495057;
+  margin: 15px 0 8px 0;
+  font-weight: 600;
+}
+
+.code-example pre,
+.usage-example pre,
+.code-organization pre {
+  background: #2d3748;
+  color: #e2e8f0;
+  padding: 15px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 10px 0;
+}
+
+.code-example code,
+.usage-example code,
+.code-organization code {
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.code-example-small {
+  margin: 15px 0;
+}
+
+.code-example-small pre {
+  background: #2d3748;
+  color: #e2e8f0;
+  padding: 12px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 8px 0;
+  font-size: 12px;
+}
+
+.code-example-small code {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.definition-summary {
+  background: #e8f4fd;
+  padding: 20px;
+  border-radius: 6px;
+  border-left: 4px solid #007acc;
+  margin-top: 20px;
+}
+
+.definition-summary h5 {
+  color: #007acc;
+  margin: 0 0 15px 0;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.definition-summary ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.definition-summary li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+  color: #2c3e50;
+}
+
+.definition-summary strong {
+  color: #007acc;
+  font-weight: 600;
+}
+
+.definition-summary code {
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+}
+
+.scenarios-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.scenario-column {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+.scenario-column h5 {
+  color: #495057;
+  margin-top: 0;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.scenario-column ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.scenario-column li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.selection-advice {
+  background: #e8f5e8;
+  padding: 20px;
+  border-radius: 6px;
+  border-left: 4px solid #28a745;
+  margin-top: 20px;
+}
+
+.selection-advice ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.selection-advice li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  color: #155724;
+}
+
+.selection-advice strong {
+  color: #155724;
+  font-weight: 600;
 }
 
 h2 {
@@ -563,15 +1034,26 @@ h3 {
 }
 
 .comparison-card {
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-  border-left: 4px solid #42b983;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  padding: 25px;
+  border-radius: 12px;
+  border-left: 5px solid #42b983;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #e9ecef;
+}
+
+.comparison-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .comparison-card h3 {
   color: #42b983;
   margin-top: 0;
+  font-size: 1.3em;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
 }
 
 .comparison-card ul {
@@ -587,26 +1069,31 @@ h3 {
 .code-demo {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 25px;
   margin-bottom: 30px;
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .demo-preview {
-  padding: 20px;
+  padding: 25px;
   background: white;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid #e9ecef;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .code-block {
-  background: #2d3748;
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
   color: #e2e8f0;
-  padding: 20px;
-  border-radius: 6px;
+  padding: 25px;
+  border-radius: 8px;
   overflow-x: auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  border: 1px solid #4a5568;
 }
 
 .code-block h4 {
@@ -831,26 +1318,6 @@ h3 {
 
 .summary-content strong {
   color: #2c3e50;
-}
-
-@media (max-width: 768px) {
-  .comparison-grid,
-  .code-demo,
-  .scenarios-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .code-demo {
-    grid-template-columns: 1fr;
-  }
-
-  .demo-preview {
-    order: 1;
-  }
-
-  .code-block {
-    order: 2;
-  }
 }
 </style>
 
