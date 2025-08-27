@@ -61,6 +61,13 @@ export const navMenu = [
     desc: "Vue2 插槽的分类、使用场景与实战例子",
     component: () => import("../views/SlotDemo.vue"),
   },
+  {
+    path: "/axios-demo",
+    name: "AxiosDemo",
+    label: "Axios",
+    desc: "Vue2 项目中 Axios 的特性、与 Fetch 对比及二次封装",
+    component: () => import("../views/axiosDemo.vue"),
+  },
 ];
 
 // 提取路由配置
