@@ -54,6 +54,13 @@ export const navMenu = [
     desc: "Vue2 组件和插件的区别详解",
     component: () => import("../views/ComponentVsPlugin.vue"),
   },
+  {
+    path: "/slot-demo",
+    name: "SlotDemo",
+    label: "Slot",
+    desc: "Vue2 插槽的分类、使用场景与实战例子",
+    component: () => import("../views/SlotDemo.vue"),
+  },
 ];
 
 // 提取路由配置
