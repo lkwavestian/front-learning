@@ -68,6 +68,13 @@ export const navMenu = [
     desc: "Vue2 项目中 Axios 的特性、与 Fetch 对比及二次封装",
     component: () => import("../views/axiosDemo.vue"),
   },
+  {
+    path: "/permission-demo",
+    name: "PermissionDemo",
+    label: "权限管理",
+    desc: "Vue2 权限管理系统详解：接口权限、按钮权限、菜单权限、路由权限",
+    component: () => import("../views/permissionDemo.vue"),
+  },
 ];
 
 // 提取路由配置
