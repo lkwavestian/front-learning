@@ -41,7 +41,11 @@
       </div>
 
       <!-- 其他页面内容 -->
-      <router-view v-else />
+      <router-view v-else v-slot="{ Component, route }">
+        <keep-alive :include="cachedComponents" :exclude="excludedComponents">
+          <component :is="Component" :key="route.path" />
+        </keep-alive>
+      </router-view>
     </main>
 
     <!-- 页脚 -->
@@ -59,12 +63,141 @@ export default {
   data() {
     return {
       navMenu,
+      cachedComponents: [], // 需要缓存的组件名称
+      excludedComponents: [], // 不需要缓存的组件名称
     };
   },
   methods: {
     navigateTo(path) {
       this.$router.push(path);
     },
+    // 根据路由元信息更新缓存策略
+    updateCacheStrategy(route) {
+      // debugger;
+      if (route.meta && route.meta.keepAlive !== undefined) {
+        const componentName = route.name;
+
+        if (route.meta.keepAlive === false) {
+          // 不缓存：添加到排除列表
+          if (!this.excludedComponents.includes(componentName)) {
+            this.excludedComponents.push(componentName);
+          }
+          // 从缓存列表中移除
+          this.cachedComponents = this.cachedComponents.filter((name) => name !== componentName);
+        } else if (route.meta.cacheStrategy === "always") {
+          // 总是缓存：添加到缓存列表
+          if (!this.cachedComponents.includes(componentName)) {
+            this.cachedComponents.push(componentName);
+          }
+          // 从排除列表中移除
+          this.excludedComponents = this.excludedComponents.filter(
+            (name) => name !== componentName
+          );
+        } else if (route.meta.cacheStrategy === "conditional") {
+          // 条件缓存：根据具体条件决定
+          this.handleConditionalCache(route, componentName);
+        }
+      }
+    },
+    // 处理条件缓存逻辑
+    handleConditionalCache(route, componentName) {
+      // 这里可以根据具体业务逻辑决定是否缓存
+      // 例如：根据用户权限、页面状态等
+      const shouldCache = this.shouldCacheComponent(route, componentName);
+
+      if (shouldCache) {
+        if (!this.cachedComponents.includes(componentName)) {
+          this.cachedComponents.push(componentName);
+        }
+        this.excludedComponents = this.excludedComponents.filter((name) => name !== componentName);
+      } else {
+        if (!this.excludedComponents.includes(componentName)) {
+          this.excludedComponents.push(componentName);
+        }
+        this.cachedComponents = this.cachedComponents.filter((name) => name !== componentName);
+      }
+    },
+    // 判断组件是否应该被缓存（条件缓存逻辑）
+    shouldCacheComponent(route, componentName) {
+      // 示例：根据路由参数、查询参数或用户状态决定
+      // 这里可以根据实际业务需求调整
+
+      // 1. 根据路由参数判断
+      if (route.params && route.params.id) {
+        // 有ID参数的路由通常需要缓存
+        return true;
+      }
+
+      // 2. 根据查询参数判断
+      if (route.query && route.query.cache === "true") {
+        return true;
+      }
+
+      // 3. 根据用户权限判断（示例）
+      const userRole = localStorage.getItem("userRole") || "guest";
+      if (userRole === "admin" && componentName.includes("Admin")) {
+        return true;
+      }
+
+      // 4. 默认策略：条件缓存的组件默认不缓存，除非有特殊条件
+      return false;
+    },
+    // 手动控制组件缓存
+    toggleComponentCache(componentName, shouldCache) {
+      if (shouldCache) {
+        if (!this.cachedComponents.includes(componentName)) {
+          this.cachedComponents.push(componentName);
+        }
+        this.excludedComponents = this.excludedComponents.filter((name) => name !== componentName);
+      } else {
+        if (!this.excludedComponents.includes(componentName)) {
+          this.excludedComponents.push(componentName);
+        }
+        this.cachedComponents = this.cachedComponents.filter((name) => name !== componentName);
+      }
+    },
+    // 清空所有缓存
+    clearAllCache() {
+      this.cachedComponents = [];
+      this.excludedComponents = [];
+    },
+    // 获取当前缓存状态
+    getCacheStatus() {
+      return {
+        cached: [...this.cachedComponents],
+        excluded: [...this.excludedComponents],
+        total: this.cachedComponents.length + this.excludedComponents.length,
+      };
+    },
+  },
+  watch: {
+    // 监听路由变化，自动更新缓存策略
+    $route(to, from) {
+      this.updateCacheStrategy(to);
+      console.log("this.cachedComponents", this.cachedComponents);
+      console.log("this.excludedComponents", this.excludedComponents);
+      console.log("路由变化，更新缓存策略:", {
+        to: to.name,
+        from: from.name,
+        cacheStrategy: to.meta?.cacheStrategy,
+        keepAlive: to.meta?.keepAlive,
+      });
+    },
+  },
+  mounted() {
+    // 初始化时设置当前路由的缓存策略
+    if (this.$route.meta) {
+      this.updateCacheStrategy(this.$route);
+    }
+
+    // 将缓存管理方法暴露到全局，方便调试
+    this.$root.$cacheManager = {
+      toggle: this.toggleComponentCache,
+      clear: this.clearAllCache,
+      status: this.getCacheStatus,
+    };
+
+    console.log("App 组件挂载完成，缓存管理器已初始化");
   },
 };
 </script>
