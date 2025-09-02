@@ -137,6 +137,18 @@ export const navMenu = [
       cacheStrategy: "always", // 可选值: always, conditional, never
     },
   },
+  {
+    path: "/spa-demo",
+    name: "SPADemo",
+    label: "SPA 单页面应用",
+    desc: "SPA单页面应用详解：概念、优缺点、与MPA区别及实现方式",
+    component: () => import("../views/spaDemo.vue"),
+    meta: {
+      keepAlive: true,
+      title: "SPA 单页面应用详解",
+      cacheStrategy: "always",
+    },
+  },
 ];
 
 // 提取路由配置
