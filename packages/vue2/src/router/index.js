@@ -149,6 +149,18 @@ export const navMenu = [
       cacheStrategy: "always",
     },
   },
+  {
+    path: "/ssr-demo",
+    name: "SSRDemo",
+    label: "SSR 服务端渲染",
+    desc: "SSR是什么、解决了什么问题、如何实现（不在视图中直接写代码）",
+    component: () => import("../views/ssrDemo.vue"),
+    meta: {
+      keepAlive: true,
+      title: "SSR 服务端渲染详解",
+      cacheStrategy: "always",
+    },
+  },
 ];
 
 // 提取路由配置
