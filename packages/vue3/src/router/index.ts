@@ -17,14 +17,14 @@ export interface NavMenuItem {
 
 export const navMenu: NavMenuItem[] = [
   {
-    path: "/test-demo",
-    name: "TestDemo",
-    label: "测试页面",
-    desc: "Vue3 测试页面 - 验证路由和基础功能",
-    component: () => import("../views/TestDemo.vue"),
+    path: "/proxy-vs-defineproperty",
+    name: "ProxyVsDefineProperty",
+    label: "Proxy vs defineProperty",
+    desc: "Vue3 为什么使用 Proxy API 替代 defineProperty - 交互式演示",
+    component: () => import("../views/ProxyVsDefineProperty.vue"),
     meta: {
       keepAlive: true,
-      title: "测试页面",
+      title: "Proxy vs defineProperty",
       cacheStrategy: "always",
     },
   },
