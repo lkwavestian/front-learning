@@ -108,8 +108,6 @@
     <section class="content-section">
       <h2>代码示例</h2>
       <SSRCodeSamples />
-
-      <SSRCodeSamples />
     </section>
 
     <section class="content-section">
