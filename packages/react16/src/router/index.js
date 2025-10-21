@@ -7,6 +7,13 @@ export const navMenu = [
     desc: "深入理解 React 受控组件与非受控组件的区别、使用场景与最佳实践",
     component: () => import("../views/ControlledVsUncontrolled"),
   },
+  {
+    path: "/react-event-system",
+    name: "ReactEventSystem",
+    label: "React 事件机制",
+    desc: "深入理解 React 合成事件、事件委托、事件冒泡捕获与最佳实践",
+    component: () => import("../views/ReactEventSystem"),
+  },
 ];
 
 // 导出路由配置
