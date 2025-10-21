@@ -14,6 +14,13 @@ export const navMenu = [
     desc: "深入理解 React 合成事件、事件委托、事件冒泡捕获与最佳实践",
     component: () => import("../views/ReactEventSystem"),
   },
+  {
+    path: "/component-types",
+    name: "ComponentTypes",
+    label: "组件创建方式",
+    desc: "对比函数组件、createClass 和 Class Component 三种创建方式的异同",
+    component: () => import("../views/ComponentTypes"),
+  },
 ];
 
 // 导出路由配置
