@@ -1,0 +1,33 @@
+/* CSS Modules 示例样式 */
+.modulesBox {
+  padding: 20px;
+  background-color: #fff3e0;
+  border-radius: 8px;
+  border: 2px solid #ff9800;
+  margin: 10px 0;
+}
+
+.modulesText {
+  color: #e65100;
+  font-size: 16px;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+.modulesButton {
+  padding: 10px 20px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.modulesButton:hover {
+  background-color: #f57c00;
+  transform: scale(1.05);
+}
+

@@ -21,6 +21,13 @@ export const navMenu = [
     desc: "对比函数组件、createClass 和 Class Component 三种创建方式的异同",
     component: () => import("../views/ComponentTypes"),
   },
+  {
+    path: "/css-introduction",
+    name: "CSSIntroduction",
+    label: "CSS 引入方式",
+    desc: "详解六种 React CSS 样式引入方式，对比优缺点和适用场景",
+    component: () => import("../views/CSSIntroduction"),
+  },
 ];
 
 // 导出路由配置
