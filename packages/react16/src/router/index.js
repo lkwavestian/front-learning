@@ -35,6 +35,13 @@ export const navMenu = [
     desc: "深入理解 React 16.4+ 类组件生命周期三个阶段与 Hooks 对比",
     component: () => import("../views/ReactLifecycle"),
   },
+  {
+    path: "/component-communication",
+    name: "ComponentCommunication",
+    label: "组件通信",
+    desc: "全面掌握 React 六种组件通信方式：Props、Context、回调、Ref、状态提升、自定义 Hooks",
+    component: () => import("../views/ComponentCommunication"),
+  },
 ];
 
 // 导出路由配置
