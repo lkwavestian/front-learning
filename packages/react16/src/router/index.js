@@ -28,6 +28,13 @@ export const navMenu = [
     desc: "详解六种 React CSS 样式引入方式，对比优缺点和适用场景",
     component: () => import("../views/CSSIntroduction"),
   },
+  {
+    path: "/react-lifecycle",
+    name: "ReactLifecycle",
+    label: "React 生命周期",
+    desc: "深入理解 React 16.4+ 类组件生命周期三个阶段与 Hooks 对比",
+    component: () => import("../views/ReactLifecycle"),
+  },
 ];
 
 // 导出路由配置
