@@ -42,6 +42,13 @@ export const navMenu = [
     desc: "全面掌握 React 六种组件通信方式：Props、Context、回调、Ref、状态提升、自定义 Hooks",
     component: () => import("../views/ComponentCommunication"),
   },
+  {
+    path: "/higher-order-component",
+    name: "HigherOrderComponent",
+    label: "高阶组件",
+    desc: "深入理解高阶组件 (HOC) 的概念、实现与实际应用场景，学习代码复用高级技巧",
+    component: () => import("../views/HigherOrderComponent"),
+  },
 ];
 
 // 导出路由配置
