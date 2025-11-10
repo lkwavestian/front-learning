@@ -49,6 +49,13 @@ export const navMenu = [
     desc: "深入理解高阶组件 (HOC) 的概念、实现与实际应用场景，学习代码复用高级技巧",
     component: () => import("../views/HigherOrderComponent"),
   },
+  {
+    path: "/error-handling",
+    name: "ReactErrorHandling",
+    label: "错误处理",
+    desc: "全面掌握 React 项目中错误捕获的六种方法：Error Boundary、try-catch、Promise、全局监听等",
+    component: () => import("../views/ReactErrorHandling"),
+  },
 ];
 
 // 导出路由配置
