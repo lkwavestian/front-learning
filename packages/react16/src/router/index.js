@@ -50,6 +50,13 @@ export const navMenu = [
     component: () => import("../views/HigherOrderComponent"),
   },
   {
+    path: "/react-refs",
+    name: "ReactRefs",
+    label: "Refs 与引用",
+    desc: "理解 React refs 的定义、useRef/forwardRef/useImperativeHandle 的使用方式与典型场景",
+    component: () => import("../views/ReactRefs"),
+  },
+  {
     path: "/error-handling",
     name: "ReactErrorHandling",
     label: "错误处理",
