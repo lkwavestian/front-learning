@@ -43,6 +43,13 @@ export const navMenu = [
     component: () => import("../views/ReactSetStateMechanism"),
   },
   {
+    path: "/react-render-method",
+    name: "ReactRenderMethod",
+    label: "render 方法原理",
+    desc: "解释 render 的执行原理、Fiber 渲染阶段与常见触发入口，厘清 render 与 commit 的关系",
+    component: () => import("../views/ReactRenderMethod"),
+  },
+  {
     path: "/component-communication",
     name: "ComponentCommunication",
     label: "组件通信",
