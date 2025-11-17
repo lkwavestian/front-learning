@@ -36,6 +36,13 @@ export const navMenu = [
     component: () => import("../views/ReactLifecycle"),
   },
   {
+    path: "/setstate-mechanism",
+    name: "ReactSetStateMechanism",
+    label: "setState 执行机制",
+    desc: "拆解 setState 的调度、批处理与 flushSync 等机制，理解 React 更新流程",
+    component: () => import("../views/ReactSetStateMechanism"),
+  },
+  {
     path: "/component-communication",
     name: "ComponentCommunication",
     label: "组件通信",
