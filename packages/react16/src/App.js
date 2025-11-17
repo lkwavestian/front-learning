@@ -19,7 +19,12 @@ function HomePage() {
         <p>这是一个专门用于学习 React 的项目，包含了 React 的核心功能演示。</p>
       </div>
 
-      <div className="route-grid">
+      <div
+        className="route-grid"
+        style={{
+          gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+        }}
+      >
         {navMenu.map((item) => (
           <div key={item.name} className="route-card" onClick={() => navigateTo(item.path)}>
             <div className="card-icon">

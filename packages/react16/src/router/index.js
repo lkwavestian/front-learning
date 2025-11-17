@@ -50,6 +50,13 @@ export const navMenu = [
     component: () => import("../views/RealDomVsVirtualDom"),
   },
   {
+    path: "/jsx-to-dom",
+    name: "ReactJsxToDom",
+    label: "JSX 到 DOM 流程",
+    desc: "拆解 JSX 编译、Fiber 构建、Diff 与 Commit，理解 React 如何生成真实 DOM",
+    component: () => import("../views/ReactJsxToDom"),
+  },
+  {
     path: "/react-render-method",
     name: "ReactRenderMethod",
     label: "render 方法原理",
