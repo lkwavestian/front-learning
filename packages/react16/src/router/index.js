@@ -43,6 +43,13 @@ export const navMenu = [
     component: () => import("../views/ReactSetStateMechanism"),
   },
   {
+    path: "/real-vs-virtual-dom",
+    name: "RealDomVsVirtualDom",
+    label: "Real DOM vs Virtual DOM",
+    desc: "梳理真实 DOM 与虚拟 DOM 的核心差异、优缺点与渲染流程",
+    component: () => import("../views/RealDomVsVirtualDom"),
+  },
+  {
     path: "/react-render-method",
     name: "ReactRenderMethod",
     label: "render 方法原理",
