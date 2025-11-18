@@ -45,7 +45,7 @@ export const navMenu = [
   {
     path: "/real-vs-virtual-dom",
     name: "RealDomVsVirtualDom",
-    label: "Real DOM vs Virtual DOM",
+    label: "Real DOM vs Virtual DOM（待深化）",
     desc: "梳理真实 DOM 与虚拟 DOM 的核心差异、优缺点与渲染流程",
     component: () => import("../views/RealDomVsVirtualDom"),
   },
@@ -55,6 +55,13 @@ export const navMenu = [
     label: "JSX 到 DOM 流程",
     desc: "拆解 JSX 编译、Fiber 构建、Diff 与 Commit，理解 React 如何生成真实 DOM",
     component: () => import("../views/ReactJsxToDom"),
+  },
+  {
+    path: "/react-fiber-architecture",
+    name: "ReactFiberArchitecture",
+    label: "Fiber 架构（待深化）",
+    desc: "理解 Fiber 的设计动机、解决的问题与核心字段，掌握可中断渲染的原理",
+    component: () => import("../views/ReactFiberArchitecture"),
   },
   {
     path: "/react-render-method",
