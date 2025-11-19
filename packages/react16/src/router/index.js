@@ -98,6 +98,13 @@ export const navMenu = [
     desc: "全面掌握 React 项目中错误捕获的六种方法：Error Boundary、try-catch、Promise、全局监听等",
     component: () => import("../views/ReactErrorHandling"),
   },
+  {
+    path: "/react-hooks",
+    name: "ReactHooks",
+    label: "React Hooks",
+    desc: "理解 Hooks 的设计初衷、核心 API、自定义 Hook 与常见应用场景",
+    component: () => import("../views/ReactHooks"),
+  },
 ];
 
 // 导出路由配置
